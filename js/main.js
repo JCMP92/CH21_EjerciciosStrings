@@ -43,7 +43,21 @@ function repeatedV2(str) {
 function reversedStr(str) {
   let newStr = '';
   for (let i = str.length - 1; i >= 0; i--) {
-    newStr += str[i]; // or newString = newString + str[i];
+    newStr += str[i];
   }
   return newStr;
 }
+
+// Palindromo ------------------------------------------------------------------------------
+function esPal(str) {
+  let newStr = '';
+  for (let i = str.length - 1; i >= 0; i--) {
+    newStr += str[i];
+  }
+
+  return str.toLowerCase().split(' ').join('') ==
+    newStr.toLocaleLowerCase().split(' ').join('')
+    ? `${str} es un palindromo`
+    : `${str} no es un palindromo`;
+}
+
