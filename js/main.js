@@ -1,63 +1,22 @@
-function mostRepeated(str) {
-  let freqCounter = {};
-  let lowStr = str.toLowerCase();
-  let maxCount = 0;
-  let maxChar = null;
-  let repetition = null;
+// Validación -------------------------------------------------------------------------------------------
+let btnSend = document.getElementById('sendBtn');
 
-  for (let char of lowStr) {
-    freqCounter[char] = freqCounter[char] + 1 || 1;
+btnSend.addEventListener('click', function (e) {
+  e.preventDefault();
+  let emailRegex =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let inputMail = document.getElementById('exampleInputEmail1');
+  let inputPass = document.getElementById('exampleInputPassword1');
+  let alert = document.getElementById('alert');
+  alert.style.display = 'none';
+  if (inputPass.value.trim().replaceAll('  ', '').length < 20) {
+    alert.innerHTML = 'DEBEN SER MAS DE 20 CARACTERES';
+    alert.style.display = 'block';
+    inputPass.focus();
+    inputPass.select();
   }
-
-  for (let key in freqCounter) {
-    if (freqCounter[key] > maxCount) {
-      maxCount = freqCounter[key];
-      maxChar = key;
-      repetition = freqCounter[key];
-    }
+  if (inputMail.value.match(emailRegex) == null) {
+    alert.innerHTML += '<br/>CORREO INVÁLIDO';
+    alert.style.display = 'block';
   }
-  return `${maxChar} es el caracter más repetido, con ${repetition} apariciones en ${str}`;
-}
-
-function repeatedV2(str) {
-  let lowStr = str.toLowerCase();
-  let contFinal = 0;
-  let letra = '';
-
-  for (let i = 0; i < lowStr.length; i++) {
-    let contadorTemp = 1;
-    for (let j = i + 1; j < lowStr.length; j++) {
-      if (lowStr.charAt(i) == lowStr.charAt(j)) contadorTemp++;
-    }
-    if (contadorTemp > contFinal) {
-      contFinal = contadorTemp;
-      letra = lowStr.charAt(i);
-    }
-  }
-
-  return `${letra} se repite ${contFinal} veces`;
-}
-
-// Reverse a string ------------------------------------------------------------------------------
-
-function reversedStr(str) {
-  let newStr = '';
-  for (let i = str.length - 1; i >= 0; i--) {
-    newStr += str[i];
-  }
-  return newStr;
-}
-
-// Palindromo ------------------------------------------------------------------------------
-function esPal(str) {
-  let newStr = '';
-  for (let i = str.length - 1; i >= 0; i--) {
-    newStr += str[i];
-  }
-
-  return str.toLowerCase().split(' ').join('') ==
-    newStr.toLocaleLowerCase().split(' ').join('')
-    ? `${str} es un palindromo`
-    : `${str} no es un palindromo`;
-}
-
+});
