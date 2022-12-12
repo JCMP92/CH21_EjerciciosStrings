@@ -19,8 +19,6 @@ function mostRepeated(str) {
   return `${maxChar} es el caracter más repetido, con ${repetition} apariciones en ${str}`;
 }
 
-
-
 function repeatedV2(str) {
   let lowStr = str.toLowerCase();
   let contFinal = 0;
@@ -38,4 +36,14 @@ function repeatedV2(str) {
   }
 
   return `${letra} se repite ${contFinal} veces`;
+}
+
+// Reverse a string ------------------------------------------------------------------------------
+
+function reversedStr(str) {
+  let newStr = '';
+  for (let i = str.length - 1; i >= 0; i--) {
+    newStr += str[i]; // or newString = newString + str[i];
+  }
+  return newStr;
 }
